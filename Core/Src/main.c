@@ -145,12 +145,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
               uint8_t result = 0x00; // 默认失败
               if(data == 0x00)
               {
-                HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET); // 关闭LED1
+                HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET); // 关闭LED1
                 result = 0x01; // 执行成功
               }
               else if(data == 0x01)
               {
-                HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET); // 打开LED1
+                HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET); // 打开LED1
                 result = 0x01; // 执行成功
               }
               // 发送响应帧
@@ -166,7 +166,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
               {
                 // 0次闪烁：停止任务，关闭LED，立即返回成功
                 TimeSlide_Disable(&led1ToggleTask);
-                HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+                HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
                 if(huart1.gState == HAL_UART_STATE_READY)
                 {
                   transmitBackBuffer[3] = 0x01;
@@ -261,7 +261,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim4);
   led1ToggleTask.func = LED1_Toggle;
   led1ToggleTask.period_ms = 25; // 翻转周期 25ms（50ms闪烁周期的一半）
-  button1.dead_zone_time = 20;        // 防抖时间 20ms
+  button1.dead_zone_time = 50;        // 防抖时间 50ms
   button1.long_press_threshold = 2000; // 长按阈值 2秒
   transmitBackBuffer[0] = BACK_HEADER_BYTE1;
   transmitBackBuffer[1] = BACK_HEADER_BYTE2;
@@ -280,13 +280,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    button1TaskState = ButtonUpdate(&button1, HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin));
+    button1TaskState = ButtonUpdate(&button1, HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_RESET);
     if(state == 0)
     {
       if(button1TaskState == 2)
       {
         state = 1; // 切换到运行状态
         HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+        button1TaskState = 0;
       }
     }
     else if(state == 1)
@@ -295,15 +296,18 @@ int main(void)
       {
         state = 0; // 切换到待机状态
         TimeSlide_Disable(&led1ToggleTask);
-        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET); 
+        led1ToggleTaskState = 0;
+        HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET); 
         led2Light = 0.0;
         led2State = 0;
         __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 0);
         HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_1);
         transmitState = 0x01;
+        button1TaskState = 0;
       }
       else if(button1TaskState == 1)
       {
+        button1TaskState = 0;
         if(huart1.gState == HAL_UART_STATE_READY)
         {
           transmitBuffer[3] = transmitState;
@@ -314,12 +318,12 @@ int main(void)
       led1ToggleTaskState = TimeSlide_Update(&led1ToggleTask);
       if(led1ToggleTaskState == 1)
       {
+        led1ToggleTaskState = 0;
         if(huart1.gState == HAL_UART_STATE_READY)
         {
           transmitBackBuffer[3] = 0x01; // 执行成功
           HAL_UART_Transmit_IT(&huart1, transmitBackBuffer, sizeof(transmitBackBuffer));
         }
-        led1ToggleTaskState = 0; // 重置状态
       }
     }
     /* USER CODE END WHILE */

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Test3_2\Test3_2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Test3_2\Test3_2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6180002: Last Updated: Sat May 23 12:58:33 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6180002: Last Updated: Sat May 23 19:29:50 2026
 <BR><P>
 <H3>Maximum Stack Usage =        204 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -454,7 +454,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED1_Toggle
 </UL>
 
-<P><STRONG><a name="[75]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(.text.HAL_GPIO_WritePin))
+<P><STRONG><a name="[77]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(.text.HAL_GPIO_WritePin))
 <BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxCpltCallback
@@ -465,7 +465,7 @@ Global Symbols
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ButtonUpdate
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimeSlide_Enable
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimeSlide_Enable
 </UL>
 
 <P><STRONG><a name="[83]"></a>HAL_IncTick</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f1xx_hal.o(.text.HAL_IncTick))
@@ -707,14 +707,14 @@ Global Symbols
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxCpltCallback
 </UL>
 
-<P><STRONG><a name="[74]"></a>HAL_UART_RxCpltCallback</STRONG> (Thumb, 266 bytes, Stack size 16 bytes, main.o(.text.HAL_UART_RxCpltCallback))
+<P><STRONG><a name="[74]"></a>HAL_UART_RxCpltCallback</STRONG> (Thumb, 270 bytes, Stack size 16 bytes, main.o(.text.HAL_UART_RxCpltCallback))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = HAL_UART_RxCpltCallback &rArr; TimeSlide_Enable
 </UL>
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit_IT
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimeSlide_Disable
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimeSlide_Enable
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimeSlide_Disable
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimeSlide_Enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Receive_IT
 </UL>
@@ -740,11 +740,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.main)
 </UL>
-<P><STRONG><a name="[7b]"></a>MX_GPIO_Init</STRONG> (Thumb, 138 bytes, Stack size 48 bytes, gpio.o(.text.MX_GPIO_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = MX_GPIO_Init &rArr; HAL_GPIO_Init
+<P><STRONG><a name="[7b]"></a>MX_GPIO_Init</STRONG> (Thumb, 158 bytes, Stack size 40 bytes, gpio.o(.text.MX_GPIO_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = MX_GPIO_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -818,12 +818,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[77]"></a>TimeSlide_Disable</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timeslide.o(.text.TimeSlide_Disable))
+<P><STRONG><a name="[76]"></a>TimeSlide_Disable</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timeslide.o(.text.TimeSlide_Disable))
 <BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxCpltCallback
 </UL>
 
-<P><STRONG><a name="[76]"></a>TimeSlide_Enable</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, timeslide.o(.text.TimeSlide_Enable))
+<P><STRONG><a name="[75]"></a>TimeSlide_Enable</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, timeslide.o(.text.TimeSlide_Enable))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = TimeSlide_Enable
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
@@ -853,7 +853,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[42]"></a>main</STRONG> (Thumb, 442 bytes, Stack size 72 bytes, main.o(.text.main))
+<P><STRONG><a name="[42]"></a>main</STRONG> (Thumb, 506 bytes, Stack size 72 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 204<LI>Call Chain = main &rArr; MX_TIM2_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimeSlide_Update
@@ -871,8 +871,8 @@ Global Symbols
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit_IT
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimeSlide_Disable
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimeSlide_Disable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
