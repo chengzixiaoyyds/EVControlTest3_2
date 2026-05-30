@@ -1,5 +1,10 @@
+# Python
 __pycache__/
-MDK-ARM/.vscode/
+
+# CubeMX cache (machine-specific, should NOT be committed)
+.mxproject
+
+# MDK-ARM build outputs
 *.o
 *.obj
 *.d
@@ -13,23 +18,23 @@ MDK-ARM/.vscode/
 *.lst
 *.lnp
 *.crf
+
+# MDK-ARM generated files
 *.htm
 *.build_log.htm
 *.plg
 *.tracespec
-*.sct\
-*.uvoptx
+*.sct
+
+# MDK-ARM IDE user prefs (machine-specific)
 *.uvopt
 *.uvguix.*
 *.uvgui.*
 *.uvguix
 *.uvmpw
-*.htm
-*.build_log.htm
-*.plg
-*.tracespec
-*.dbg
-*.dbgconf
-*.sct
+
+# MDK-ARM generated config
 MDK-ARM/DebugConfig/
 MDK-ARM/RTE/
+
+MDK-ARM/.vscode/
